@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         tvSignup = findViewById(R.id.tvSignup);
         btnLogin = findViewById(R.id.btnLogin);
 
+        etUsername.setText("kiranrana");
+        etPassword.setText("kiran");
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,8 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
-            }
+                login(); }
         });
     }
 
@@ -54,13 +55,13 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictModeClass.StrictMode();
         if (loginBLL.checkUser(username, password)) {
-            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-            startActivity(intent);
-            finish();
+            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+//            startActivity(intent);
+//            finish();
         } else {
-            etUsername.setError("username or password is incorrect");
+            Toast.makeText(this, "Either username or password is incorrect", Toast.LENGTH_SHORT).show();
             etUsername.requestFocus();
-            return;
         }
     }
 }

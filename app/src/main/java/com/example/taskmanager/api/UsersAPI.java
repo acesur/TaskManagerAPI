@@ -20,10 +20,11 @@ public interface UsersAPI {
 
     @FormUrlEncoded
     @POST("users/login")
-    Call<SignUpResponse> checkUser(@Field("username") String username , @Field("password") String password);
+    Call<SignUpResponse> checkUser(@Field("username") String username, @Field("password") String password);
 
     @Multipart
     @POST("upload")
-    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img );
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
 
 }
