@@ -1,8 +1,10 @@
-package com.example.taskmanager;
+package com.example.taskmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.taskmanager.R;
 
 public class DashboardActivity extends AppCompatActivity {
 
