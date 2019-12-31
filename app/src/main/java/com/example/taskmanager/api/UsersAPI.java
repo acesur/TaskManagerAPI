@@ -1,6 +1,6 @@
 package com.example.taskmanager.api;
 
-import com.example.taskmanager.model.Users;
+import com.example.taskmanager.model.User;
 import com.example.taskmanager.serverresponse.ImageResponse;
 import com.example.taskmanager.serverresponse.SignUpResponse;
 
@@ -16,7 +16,7 @@ import retrofit2.http.Part;
 public interface UsersAPI {
 
     @POST("users/signup")
-    Call<SignUpResponse> registerUser(@Body Users users);
+    Call<SignUpResponse> registerUser(@Body User users);
 
     @FormUrlEncoded
     @POST("users/login")
@@ -25,6 +25,7 @@ public interface UsersAPI {
     @Multipart
     @POST("upload")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
 
 
 }

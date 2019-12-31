@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.taskmanager.R;
 import com.example.taskmanager.bll.LoginBLL;
 import com.example.taskmanager.strictmode.StrictModeClass;
+import com.example.taskmanager.url.Url;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -55,10 +56,10 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictModeClass.StrictMode();
         if (loginBLL.checkUser(username, password)) {
-            Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-//            startActivity(intent);
-//            finish();
+            Toast.makeText(this, "Token " + Url.token, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Either username or password is incorrect", Toast.LENGTH_SHORT).show();
             etUsername.requestFocus();

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.taskmanager.R;
 import com.example.taskmanager.api.UsersAPI;
-import com.example.taskmanager.model.Users;
+import com.example.taskmanager.model.User;
 import com.example.taskmanager.serverresponse.ImageResponse;
 import com.example.taskmanager.serverresponse.SignUpResponse;
 import com.example.taskmanager.strictmode.StrictModeClass;
@@ -97,8 +97,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private String getRealPathFromUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
-        CursorLoader loader = new CursorLoader(getApplicationContext(), uri, projection, null,
-                null, null);
+        CursorLoader loader = new CursorLoader(getApplicationContext(),
+                uri, projection, null,null, null);
         Cursor cursor = loader.loadInBackground();
         int colIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
@@ -110,20 +110,23 @@ public class SignupActivity extends AppCompatActivity {
     private void saveImageOnly() {
         File file = new File(imagePath);
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile", file.getName(), requestBody);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",
+                file.getName(), requestBody);
+
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<ImageResponse> responseBodyCall = usersAPI.uploadImage(body);
 
         StrictModeClass.StrictMode();
+        //Synchronous methid
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
             imageName = imageResponseResponse.body().getFilename();
+            Toast.makeText(this, "Image inserted" + imageName, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(this, "Error" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
-
 
     private void signUp() {
         String fname = etFirstName.getText().toString();
@@ -131,7 +134,7 @@ public class SignupActivity extends AppCompatActivity {
         String username = etSignUpUsername.getText().toString();
         String password = etSignUpPassword.getText().toString();
 
-        Users users = new Users(fname, lname, username, password, imageName);
+        User users = new User(fname, lname, username, password, imageName);
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<SignUpResponse> signUpCall = usersAPI.registerUser(users);

@@ -1,6 +1,6 @@
 package com.example.taskmanager.model;
 
-public class Users {
+public class User {
 
     private String firstName;
     private String lastName;
@@ -8,7 +8,7 @@ public class Users {
     private String password;
     private String image;
 
-    public Users(String firstName, String lastName, String username, String password, String image) {
+    public User(String firstName, String lastName, String username, String password, String image) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
