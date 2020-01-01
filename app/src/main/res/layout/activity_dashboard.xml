@@ -10,7 +10,7 @@
     <ImageView
         android:layout_gravity="center"
         android:src="@drawable/noimage"
-        android:id="@+id/imgProgile"
+        android:id="@+id/imgProgileImg"
         android:layout_width="150dp"
         android:layout_height="150dp"/>
 

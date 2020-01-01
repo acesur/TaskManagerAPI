@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         tvSignup = findViewById(R.id.tvSignup);
         btnLogin = findViewById(R.id.btnLogin);
 
-        etUsername.setText("kiranrana");
-        etPassword.setText("kiran");
+        etUsername.setText("anita8973");
+        etPassword.setText("anita");
 
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
