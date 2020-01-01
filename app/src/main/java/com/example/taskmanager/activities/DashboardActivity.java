@@ -17,22 +17,20 @@ import com.example.taskmanager.url.Url;
 
 import java.io.InputStream;
 import java.net.URL;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    ImageView imgProgile;
+    ImageView imgProgileImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        imgProgile = findViewById(R.id.imgProgileImg);
+        imgProgileImg = findViewById(R.id.imgProgileImg);
 
         findViewById(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,13 +54,11 @@ public class DashboardActivity extends AppCompatActivity {
                     Toast.makeText(DashboardActivity.this, "Code " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                String imgPath = Url.base_url + "uploads/" + response.body().getImage();
-
+                String imgPath = Url.imagePath +  response.body().getImage();
                 StrictModeClass.StrictMode();
                 try {
                     URL url = new URL(imgPath);
-                    imgProgile.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+                    imgProgileImg.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -71,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
 
+                Toast.makeText(DashboardActivity.this, "Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
