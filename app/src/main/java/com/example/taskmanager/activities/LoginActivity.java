@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
         etUsername.setText("kiranrana");
         etPassword.setText("kiran");
+
         tvSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictModeClass.StrictMode();
         if (loginBLL.checkUser(username, password)) {
-            Toast.makeText(this, "Token " + Url.token, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(intent);
             finish();

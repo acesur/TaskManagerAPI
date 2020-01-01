@@ -9,8 +9,8 @@ public class Url {
     // should be in same network
 
     // public static final String base_url = "http://192.168.1.11:3000/";
-    public static final String base_url = "http://10.0.2.2:3000/";
-    // public static final String base_url = "http://172.100.100.5:3000/";
+   public static final String base_url = "http://10.0.2.2:3000/";
+   // public static final String base_url = "http://172.100.100.5:3000/";
 
     public static String token = "Bearer ";
 
