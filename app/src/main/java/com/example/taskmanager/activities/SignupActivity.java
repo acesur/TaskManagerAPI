@@ -63,8 +63,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (etSignUpPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
-                    saveImageOnly();
-                    signUp();
+                    if(validate()) {
+                        saveImageOnly();
+                        signUp();
+                    }
                 } else {
                     Toast.makeText(SignupActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
                     etSignUpPassword.requestFocus();
@@ -73,6 +75,15 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private boolean validate() {
+        boolean status=true;
+        if (etSignUpUsername.getText().toString().length() < 6) {
+            etSignUpUsername.setError("Minimum 6 character");
+            status=false;
+        }
+        return status;
     }
 
     private void BrowseImage() {
@@ -98,7 +109,7 @@ public class SignupActivity extends AppCompatActivity {
     private String getRealPathFromUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getApplicationContext(),
-                uri, projection, null,null, null);
+                uri, projection, null, null, null);
         Cursor cursor = loader.loadInBackground();
         int colIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
@@ -129,6 +140,9 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void signUp() {
+
+
+
         String fname = etFirstName.getText().toString();
         String lname = etLastName.getText().toString();
         String username = etSignUpUsername.getText().toString();
@@ -152,7 +166,6 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<SignUpResponse> call, Throwable t) {
                 Toast.makeText(SignupActivity.this, "Error" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
             }
         });
 

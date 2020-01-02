@@ -28,7 +28,6 @@ public interface UsersAPI {
     @POST("upload")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
-
     @GET("users/me")
     Call<User> getUserDetails(@Header("Authorization")String token);
 

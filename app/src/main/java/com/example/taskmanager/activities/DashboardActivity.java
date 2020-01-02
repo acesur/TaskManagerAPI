@@ -14,6 +14,7 @@ import com.example.taskmanager.api.UsersAPI;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.strictmode.StrictModeClass;
 import com.example.taskmanager.url.Url;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -55,13 +56,17 @@ public class DashboardActivity extends AppCompatActivity {
                     return;
                 }
                 String imgPath = Url.imagePath +  response.body().getImage();
-                StrictModeClass.StrictMode();
-                try {
-                    URL url = new URL(imgPath);
-                    imgProgileImg.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                Picasso.get().load(imgPath).into(imgProgileImg);
+
+
+//                StrictModeClass.StrictMode();
+//                try {
+//                    URL url = new URL(imgPath);
+//                    imgProgileImg.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
 
             @Override

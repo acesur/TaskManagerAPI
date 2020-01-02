@@ -15,7 +15,7 @@
         tools:context=".activities.SignupActivity">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        msung<de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgProfile"
             android:layout_width="150dp"
             android:layout_height="150dp"
